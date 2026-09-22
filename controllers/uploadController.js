@@ -1,0 +1,1 @@
+exports.upload=(req,res)=>{if(!req.file)return res.status(400).json({status:'error',message:'Debe adjuntar un archivo',data:null}); res.status(201).json({status:'success',message:'Archivo subido correctamente',data:{nombreOriginal:req.file.originalname,archivo:req.file.filename,tamano:req.file.size,url:`/uploads/${req.file.filename}`}})};

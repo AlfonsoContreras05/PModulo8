@@ -1,0 +1,1 @@
+const s=require('../services/authService'); exports.login=async(req,res,next)=>{try{const r=await s.login(req.body.email,req.body.password); if(!r)return res.status(401).json({status:'error',message:'Credenciales inválidas',data:null}); res.json({status:'success',message:'Autenticación correcta',data:r});}catch(e){next(e)}};

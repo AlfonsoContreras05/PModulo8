@@ -1,0 +1,2 @@
+const bcrypt=require('bcryptjs'); const jwt=require('jsonwebtoken'); const {User}=require('../models');
+async function login(email,password){if(!email||!password) throw new Error('email y password son obligatorios'); const user=await User.findOne({where:{email}}); if(!user||!(await bcrypt.compare(password,user.password))) return null; const token=jwt.sign({id:user.id,email:user.email,nombre:user.nombre},process.env.JWT_SECRET,{expiresIn:process.env.JWT_EXPIRES_IN||'1h'}); return {token,usuario:{id:user.id,nombre:user.nombre,email:user.email}};} module.exports={login};

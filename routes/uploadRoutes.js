@@ -1,0 +1,1 @@
+const r=require('express').Router(),auth=require('../middlewares/auth'),upload=require('../middlewares/upload'); r.post('/',auth,upload.single('archivo'),require('../controllers/uploadController').upload); module.exports=r;
